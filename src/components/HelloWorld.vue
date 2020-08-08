@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>灰灰是日坝歘！！！</h1>
+    <h2>{{ msg }}</h2>
     <h2>Essential Links</h2>
     <ul>
       <li>
