@@ -4,7 +4,7 @@ import Home from '@/components/Home'
 import My from '@/components/My'
 import Study from '@/components/Study'
 import Follow from '@/components/Follow'
-
+import Result from '@/components/Result'
 Vue.use(Router)
 
 export default new Router({
@@ -27,6 +27,11 @@ export default new Router({
       path: '/follow',
       name: 'follow',
       component: Follow
+    },
+    {
+      path: '/result',
+      name: 'result',
+      component: Result
     }
       ]
     }, 

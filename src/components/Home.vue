@@ -21,7 +21,7 @@
         >
           <el-menu-item index="1" @click="$router.push('/my')">我的简历</el-menu-item>
           <el-menu-item index="2" @click="$router.push('/study')">学海无涯</el-menu-item>
-          <el-menu-item index="3" @click="$router.push('/follow')">我的收藏</el-menu-item>
+          <el-menu-item index="3" @click="$router.push('/follow')">小惊喜</el-menu-item>
         </el-menu>
         <div class="img-wrap">
           <!-- <img src="../assets/header.png" /> -->
