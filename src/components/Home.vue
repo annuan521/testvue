@@ -5,7 +5,7 @@
       <div class="header-wrap">
         <div class="header-left">
           <div class="img-wrap">
-          <img src="../assets/pikaqiu.gif" alt="">
+          <img src="./pikaqiu.gif" alt="">
         </div>
         <div class="welcome">欢迎你！</div>
         </div>

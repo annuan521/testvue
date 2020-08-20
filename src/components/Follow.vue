@@ -1,6 +1,12 @@
 <template>
   <div class="borx">
-    <div class="tips">既然来了下盘棋再走！</div>
+    <div class="tips">
+      既然来了下盘棋再走！
+      <div class="reset">
+        <el-button type="primary" @click="reset">reset</el-button>
+      </div>
+    </div>
+
     <div class="box">
       <canvas ref="canvas" width="450" height="450" @click="chessClick"></canvas>
     </div>
@@ -115,7 +121,7 @@ export default {
     // 绘制棋盘
     drawChessBoard() {
       const { context } = this;
-      context.strokeStyle = "#000";
+      context.strokeStyle = "#aaa";
       for (let i = 0; i < 15; i++) {
         context.moveTo(15 + i * 30, 15);
         context.lineTo(15 + i * 30, 435);
@@ -149,9 +155,21 @@ export default {
       context.fillStyle = gradient;
       context.fill();
     },
-    reStart() {
-      this.fillArray();
-      console.log(this.chessBoard);
+    reset() {
+      this.chess = this.$refs.canvas;
+      this.context = this.chess.getContext("2d");
+      this.chessBoard = []; // 记录是否走过
+      this.me = true;
+      this.count = 0; // 所有赢法数量
+      this.wins = []; // 赢法数组
+      this.myWin = []; // 我方赢法的统计数组
+      this.computerWin = []; // 计算机赢法的统计数组
+      this.over = false;
+      this.context.clearRect(0, 0, 525, 525);
+      setTimeout(() => {
+        this.init();
+      }),
+        300;
     },
 
     // 我方落子
@@ -176,12 +194,13 @@ export default {
             this.computerWin[k] = 6;
             if (this.myWin[k] === 5) {
               //   alert("你赢了");
-              this.$router.push({
-                //核心语句
-                path: "/result", //跳转的路径
-                query: {
-                  //路由传参时push和query搭配使用 ，作用时传递参数
-                  winner: "您",
+              this.$alert("太棒了，成功打败了阿尔狗崽子", "恭喜你", {
+                confirmButtonText: "下一把",
+                callback: (action) => {
+                  this.$message({
+                    type: "info",
+                    message: `action: ${action}`,
+                  });
                 },
               });
               this.over = true;
@@ -269,21 +288,22 @@ export default {
         if (this.wins[u][v][k]) {
           this.computerWin[k]++;
           this.myWin[k] = 6;
-          if (this.computerWin[k] === 4) {
-            this.$notify({
-              title: "警告",
-              message: "你快输了哦，加油啊！",
-              type: "warning",
-            });
-          }
+          //   if (this.computerWin[k] === 4) {
+          //     this.$notify({
+          //       title: "警告",
+          //       message: "你快输了哦，加油啊！",
+          //       type: "warning",
+          //     });
+          //   }
           if (this.computerWin[k] === 5) {
             //   alert('计算机赢了');
-            this.$router.push({
-              //核心语句
-              path: "/result", //跳转的路径
-              query: {
-                //路由传参时push和query搭配使用 ，作用时传递参数
-                winner: "计算机",
+            this.$alert("再接再厉哦，被阿尔狗崽子打败了呀！", "加油哦", {
+              confirmButtonText: "下一把",
+              callback: (action) => {
+                this.$message({
+                  type: "info",
+                  message: `action: ${action}`,
+                });
               },
             });
             this.over = true;
@@ -319,10 +339,13 @@ canvas {
   box-shadow: -2px 0 2px #efefef, 5px 5px 5px #b9b9b9;
 }
 .tips {
-  padding: 10px 20px;
-  width: 200px;
-  margin: 10px auto;
-  text-align: center;
-  background: linear-gradient(to right, red, blue);
+width: 450px;
+margin: 20px auto;
+display: flex;
+justify-content: space-between;
+
+  font-size: 18px;
+  color: rgb(0, 0, 0, 0.85);
 }
+
 </style>
