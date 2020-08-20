@@ -194,7 +194,7 @@ export default {
             this.computerWin[k] = 6;
             if (this.myWin[k] === 5) {
               //   alert("你赢了");
-              this.$alert("太棒了，成功打败了阿尔狗崽子", "恭喜你", {
+              this.$alert("太棒了，成功打败了阿尔法狗崽子", "恭喜你", {
                 confirmButtonText: "下一把",
                 callback: (action) => {
                   this.$message({
@@ -297,7 +297,7 @@ export default {
           //   }
           if (this.computerWin[k] === 5) {
             //   alert('计算机赢了');
-            this.$alert("再接再厉哦，被阿尔狗崽子打败了呀！", "加油哦", {
+            this.$alert("太菜了，被阿尔法狗崽子打败了！", "一首凉凉送给你", {
               confirmButtonText: "下一把",
               callback: (action) => {
                 this.$message({
